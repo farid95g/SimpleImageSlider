@@ -23,37 +23,30 @@ $(function() {
             $(".images").animate({
                 "margin-left": '-' + margin * 100 + '%'
             });
+        } else {
+            $(".images").animate({
+                "margin-left": '-' + (quantity - 1) * 100 + '%'
+            });
+            margin = quantity - 1;
         }
-        showHideButtons(margin);
     });
 
-    // adding click event to the right button
-    $(".right").click(function(e) {
+    // creating a separate function for right button's click and setInterval() method
+    function rightClick(e) {
         e.preventDefault();
         if (margin < quantity - 1) {
             margin++;
             $(".images").animate({
                 "margin-left": '-' + margin * 100 + '%'
             });
-        }
-        showHideButtons(margin);
-    });
-
-    // function for showing and hiding the left and right buttons when reaching the first and last elements
-    function showHideButtons(margin) {
-        switch (margin) {
-            case 0:
-                $(".left").hide();
-                if (quantity === 2)
-                    $(".right").show();
-                break;
-            case quantity - 1:
-                $(".right").hide();
-                if (quantity === 2)
-                    $(".left").show();
-                break;
-            default:
-                $(".left, .right").show();
+        } else {
+            $(".images").animate({
+                "margin-left": "0"
+            });
+            margin = 0;
         }
     }
+
+    // adding click event to the right button
+    $(".right").click(rightClick);
 });

@@ -7,11 +7,12 @@
     box-shadow: 2px 2px 18px 0px rgba(140,132,140,1);
 }
 
-.slider a {
+.slider i {
     position: absolute;
     top: 45%;
     color: #fff;
     font-size: 60px;
+    cursor: pointer;
 }
 
 .left {

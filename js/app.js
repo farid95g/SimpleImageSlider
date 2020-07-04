@@ -32,8 +32,7 @@ $(function() {
     });
 
     // creating a separate function for right button's click and setInterval() method
-    function rightClick(e) {
-        e.preventDefault();
+    function rightClick() {
         if (margin < quantity - 1) {
             margin++;
             $(".images").animate({
@@ -49,4 +48,15 @@ $(function() {
 
     // adding click event to the right button
     $(".right").click(rightClick);
+
+    // adding setInterval() method to slider for playin slider on load of the document
+    let slider = setInterval(rightClick, 2500);
+
+    // adding clearInterval() method to slider on left and right buttons' mouseover event
+    $(".left, .right").mouseenter(function() {
+        clearInterval(slider);
+    });
+    $(".left, .right").mouseleave(function() {
+        slider = setInterval(rightClick, 2500);
+    });
 });
